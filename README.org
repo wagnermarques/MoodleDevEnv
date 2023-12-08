@@ -1,0 +1,73 @@
+#+Title: Ambiente para desenvolviento de plugins do moodle
+
+Este e um ambiente de desenvolvimento moodle que usa ansible pra
+facilitar automacoes em devops.
+
+O objetivo é construir o ambiente de dev com um moodle limpo usando
+apenas um comando. Por enquanto precisa de uns dois ou três mas ja
+está interessante.
+
+Essa necessidade foi reconhecida porque pode acontecer de vc quebrar o
+moodle com o seu plugin e precisar reconstruir o ambiente.
+
+* Introdução
+  Provavelmente o ambiente mais interessante pra desenvolver um plugin
+  do moodle será o mais semelhante possível do ambiente de
+  desenvolvimento do próprio moodle.
+
+  Mesmo que vc nao va contribuir com o codigo do moodle o ambiente de
+  desenvolvimento do moodle provavelmente tambem e um bom ambiente de
+  desenvolviemnto do seu plugin.
+
+  Considerando ainda que customizações do moodle deverá ser cada vez
+  mais necessária e recorrente, esse ambiente de desenvolviemnto do
+  moodle deve ser bastante interessante.
+
+  Se vc usa windows, acredito que sera necessario o wsl por causa do
+  ansible e dos containers. Mas acho que é tranquilo.
+
+* Como utilizar
+
+
+
+
+  
+* Containers que sao criados
+
+** container php 7.4 fpm[fn:2]
+
+A versao do php que o moodle usa e a 7.4[fn:1] e mais garantia de
+estabilidade, mas a documentacao de desenvolviemnto do moodle traz
+alguns detalhes sobre isso, dizendo, por exemplo, que a partir da
+versao 4.2.3 pode usar php 8.2[fn:3]. Tem mais links que detalham
+essas questoes[fn:4],[fn:5] e [fn:6].
+
+Ja que estamos utilizando docker e ansible fica muito tranquilo mudar
+as versoes conforme nossas necessidades.
+
+A utilizacao do fpm se da por questoes de escalabilidade.
+
+
+#+begin_example
+8479b5ec9e1b   moodle-service-php7.4fpm-service-dev:0.0.1  6665/tcp, 9000/tcp, 0.0.0.0:6665->80/tcp   moodle-service-php7.4fpm-service-dev
+#+end_example
+
+
+* Tarefas
+** o arquivo de configuracao do ngink "default.conf" nao tá sendo configurado dinamicamente, tem que fazer na mao antes de buildar o container
+
+
+
+* Ref
+
+[fn:1] https://moodle.org/mod/forum/discuss.php?d=434837
+
+[fn:2] https://hub.docker.com/_/php#!
+
+[fn:3] https://moodledev.io/general/development/policies/php#php-supported-versions
+
+[fn:4] https://tracker.moodle.org/browse/MDL-70745
+
+[fn:5] https://tracker.moodle.org/browse/MDL-73016
+
+[fn:6] https://tracker.moodle.org/browse/MDL-76405

@@ -1,0 +1,20 @@
+    - name: DevEnv - Building PHP 7.4-FPM Docker image
+      docker_image:
+        name: "{{ MOODLE_SERVICE_PHPFPM_DOCKER_IMAGE_NAME }}"
+        source: build
+        build:
+          pull: yes
+          path: "{{ playbook_dir }}/infra-php-fpm-container"
+          dockerfile: Dockerfile-php:8-fpm-dev
+
+    - name: DevEnv - Run PHP 7.4-FPM container
+      docker_container:
+        name:  "{{ MOODLE_SERVICE_PHPFPM_DOCKER_CONTAINER_NAME }}"
+        image:  "{{ MOODLE_SERVICE_PHPFPM_DOCKER_IMAGE_NAME }}"
+        ports:
+          - "{{ MOODLE_SERVICE_PHP_FPM_PORTS }}"
+        network_mode: "{{ MOODLE_SERVICE_DOCKER_NETWORK_NAME }}"
+        volumes:
+          - "{{ MOODLE_SERVICE_DOCKER_VOLUME_WWW_HTML_DIR }}:/var/www/html:Z"
+        state: started
+        
