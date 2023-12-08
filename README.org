@@ -28,24 +28,39 @@ moodle com o seu plugin e precisar reconstruir o ambiente.
 
 * Como utilizar
 
-
+** Fazer o clone do repositorio
 
 #+NAME:
 #+BEGIN_SRC shell :session s1 :results output :exports both 
 git clone  https://github.com/wagnermarques/MoodleDevEnv.git
 #+END_SRC
 
+** Criar os containers
 
 #+NAME:
 #+BEGIN_SRC shell :session s1 :results output :exports both 
-
+./bin/run-playbook-raise-containers.sh
 #+END_SRC
 
+#+begin_example
+[spot@fedora MoodleDevEnv]$ docker container ls
+CONTAINER ID   IMAGE                                               COMMAND                  CREATED        STATUS       PORTS                                      NAMES
+13c3c0eb3fc9   moodle-service-php7.4fpm-service-dev:0.0.1          "docker-php-entrypoi..."   3 hours ago    Up 3 hours   6665/tcp, 9000/tcp, 0.0.0.0:6665->80/tcp   moodle-service-php7.4fpm-service-dev
+4c593c1e7fdc   moodle-service-profaulasapache2-service-dev:0.0.1   "apachectl -D FOREGR..."   3 hours ago    Up 3 hours   0.0.0.0:9998->80/tcp                       moodle-service-profaulasapache2-service-dev
+3496b58cec3d   moodle-service-profaulasmariadb-service-dev:0.0.1   "docker-entrypoint.s..."   13 hours ago   Up 3 hours   3306/tcp                                   moodle-service-profaulasmariadb-service-dev
+#+end_example
+
+** Clonar o moodle pro apache2 poder servi-lo
 
 #+NAME:
 #+BEGIN_SRC shell :session s1 :results output :exports both 
-
+ ./bin/run-playbook-moodle-installation.sh 
 #+END_SRC
+
+
+** Acessar o moodle
+
+http://localhost:9998/
 
 
 
