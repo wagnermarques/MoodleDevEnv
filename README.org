@@ -30,6 +30,24 @@ moodle com o seu plugin e precisar reconstruir o ambiente.
 
 
 
+#+NAME:
+#+BEGIN_SRC shell :session s1 :results output :exports both 
+git clone  https://github.com/wagnermarques/MoodleDevEnv.git
+#+END_SRC
+
+
+#+NAME:
+#+BEGIN_SRC shell :session s1 :results output :exports both 
+
+#+END_SRC
+
+
+#+NAME:
+#+BEGIN_SRC shell :session s1 :results output :exports both 
+
+#+END_SRC
+
+
 
   
 * Containers que sao criados
