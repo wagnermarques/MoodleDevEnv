@@ -37,10 +37,14 @@ git clone  https://github.com/wagnermarques/MoodleDevEnv.git
 
 ** Criar os containers
 
+A senha que será solicitada é pra rodar como sudo
+
 #+NAME:
 #+BEGIN_SRC shell :session s1 :results output :exports both 
 ./bin/run-playbook-raise-containers.sh
 #+END_SRC
+
+Esses sao os container gerados...
 
 #+begin_example
 [spot@fedora MoodleDevEnv]$ docker container ls
@@ -52,6 +56,8 @@ CONTAINER ID   IMAGE                                               COMMAND      
 
 ** Clonar o moodle pro apache2 poder servi-lo
 
+Esse comando abaixo clona o moodle no /var/www/html  
+
 #+NAME:
 #+BEGIN_SRC shell :session s1 :results output :exports both 
  ./bin/run-playbook-moodle-installation.sh 
@@ -61,33 +67,6 @@ CONTAINER ID   IMAGE                                               COMMAND      
 ** Acessar o moodle
 
 http://localhost:9998/
-
-
-
-  
-* Containers que sao criados
-
-** container php 7.4 fpm[fn:2]
-
-A versao do php que o moodle usa e a 7.4[fn:1] e mais garantia de
-estabilidade, mas a documentacao de desenvolviemnto do moodle traz
-alguns detalhes sobre isso, dizendo, por exemplo, que a partir da
-versao 4.2.3 pode usar php 8.2[fn:3]. Tem mais links que detalham
-essas questoes[fn:4],[fn:5] e [fn:6].
-
-Ja que estamos utilizando docker e ansible fica muito tranquilo mudar
-as versoes conforme nossas necessidades.
-
-A utilizacao do fpm se da por questoes de escalabilidade.
-
-
-#+begin_example
-8479b5ec9e1b   moodle-service-php7.4fpm-service-dev:0.0.1  6665/tcp, 9000/tcp, 0.0.0.0:6665->80/tcp   moodle-service-php7.4fpm-service-dev
-#+end_example
-
-
-* Tarefas
-** o arquivo de configuracao do ngink "default.conf" nao tá sendo configurado dinamicamente, tem que fazer na mao antes de buildar o container
 
 
 
